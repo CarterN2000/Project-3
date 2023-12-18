@@ -22,4 +22,4 @@ app.get("/", (req, res) => {
   res.send ("Hello");
 });
 
-app.listen(PORT, () => console.log("listening on port 3000"));
+app.listen(PORT, () => console.log(`listening on port ${PORT}`));
