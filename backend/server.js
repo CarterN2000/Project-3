@@ -14,15 +14,17 @@ const cors = require("cors");
 const morgan = require("morgan");
 
 const usersRouter = require("./routes/users");
+const chatsRouter = require("./routes/chats");
 
 const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors);
+app.use(cors());
 app.use(morgan("dev"));
 
 app.use("/users", usersRouter);
+app.use("/chats", chatsRouter);
 
 app.get("/", (req, res) => {
   res.send("Hello");
