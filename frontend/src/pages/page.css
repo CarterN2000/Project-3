@@ -1,0 +1,77 @@
+.main-container {
+    border: 1px solid black;
+    height: 80vh;
+    width: auto;
+    display: grid;
+    grid-template-columns: 1fr repeat(4, 1fr);
+    grid-template-rows: 1fr repeat(4, 1fr);
+    grid-template-areas: 
+    "title title title title title"
+    "sidebar chatbox chatbox chatbox chatbox"
+    "sidebar chatbox chatbox chatbox chatbox"
+    "sidebar chatbox chatbox chatbox chatbox"
+    "sidebar chatbox chatbox chatbox chatbox";
+}
+
+.title {
+    grid-area: title;
+    border: 1px solid red;
+    margin: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.sidebar {
+    grid-area: sidebar;
+    border: 1px solid green;
+    margin: 1rem;
+    text-align: center;
+}
+
+.chatbox {
+    grid-area: chatbox;
+    border: 1px solid blue;
+    margin: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.chatbox > form {
+    margin-top: auto;
+    height: 10%;
+    align-items: center;
+    
+}
+
+.chats {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+}
+
+.bottom-section {
+    display: flex;
+    margin: 1rem;
+    border: 1px solid black;
+    padding: 1%;
+
+}
+
+.input-text {
+    width: 100%;
+    height: 90%;
+    font-size: large;
+}
+
+.input-submit {
+    height: 90%;
+    width: 2rem;
+}
+
+.test-chat {
+    border: 1px solid gray;
+    margin: 1rem;
+}
