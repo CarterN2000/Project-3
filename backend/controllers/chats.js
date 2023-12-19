@@ -1,23 +1,5 @@
 const express = require("express")
 const Chat = require ("../models/Chat")
-import OpenAI from 'openai'
-const { openAiKey } = require('../config/openKeys')
-
-async function getAiResponse() {
-    const openai = new OpenAI(openAiKey)
-    const prompt = "Help me write a hello world function in JS"
-
-    const completion = await openai.chat.completions.create({
-        messages: [
-            {"role": "system", "content": "You are a helpful assistant."},
-            {"role": "user", "content": prompt}
-        ],
-        model: "gpt-3.5-turbo",
-    })
-
-    console.log(completion.choices[0])
-}
-
 
 // index all chats
 async function index(req, res){
@@ -70,7 +52,6 @@ module.exports = {
     show,
     create,
     delete: destroy,
-    getAiResponse,
 }
 
 
