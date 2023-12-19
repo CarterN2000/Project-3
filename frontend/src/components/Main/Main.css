@@ -1,0 +1,8 @@
+.SideBar {
+    height: 70vh;
+    width: 30vh;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-self: left;
+}

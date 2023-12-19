@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import './App.css'
 import Main from "./components/Main";
 
-function App() {
+export default function App() {
   return (
     <div className="App">
       <Main />
