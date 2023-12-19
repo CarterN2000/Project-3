@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
-import ChatList from "../../pages/ChatList";
-import Chat from "../../pages/Chat"
+import ChatList from "../ChatList";
+import Chat from "../Chat"
 
 export default function Main() {
     return (
