@@ -13,7 +13,6 @@ export default function Page() {
     ])
 
     function addNewChat() {
-        console.log('hit!')
         if(chats.length < 5) {
             setChats([...chats], {id: chats.length + 1, content: ""})
         }
