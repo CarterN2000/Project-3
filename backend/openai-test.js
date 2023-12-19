@@ -3,6 +3,7 @@ const openAiKey = require('./config/openKeys')
 
 const openai = new OpenAI(openAiKey)
 const prompt = "Help me write a hello world function in JS"
+
 async function main(){
     const completion = await openai.chat.completions.create({
         messages: [
@@ -12,7 +13,7 @@ async function main(){
         model: "gpt-3.5-turbo",
     })
     
-    console.log(completion.choices[0])
+    console.log(completion.choices[0].message.content)
 }
 
 main()
