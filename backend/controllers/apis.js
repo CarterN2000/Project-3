@@ -2,7 +2,7 @@ const express = require("express");
 const OpenAI = require("openai");
 const { openAiKey } = require("../config/openKeys");
 const ChatModel = require("../models/Chat");
-
+//////////////////////
 // // Conversation history object
 // const conversationHistory = [];
 
@@ -78,15 +78,23 @@ async function getAiResponse(req, res) {
     const userId = req.userId || "1a2b3c4d5e6f7a8b9c0d1e2f";
 
     // Get user input from the request body
-    const { userInput } = req.body;
+    const { content } = req.body;
+    console.log("api controller", req.body)
+
+    const userInput = content
+
+    // Get user input and topic from the request body
+    // const { userInput, topic } = req.body;
 
     // Ensure that userInput is provided
+    //if (!userInput || !topic)   {
     if (!userInput) {
       return res.status(400).json({ error: "User input is required." });
     }
 
     // Find or create a chat document for the user
     let chatDocument = await ChatModel.findOne({ user: userId });
+    //let chatDocument = await ChatModel.findOne({ user: userId, topic });
 
     if (!chatDocument) {
       // If the chat document doesn't exist, create a new one
@@ -94,7 +102,10 @@ async function getAiResponse(req, res) {
     }
 
     // Construct the conversation prompt based on the chat history
-    const prompt = constructConversationPrompt(userInput, chatDocument.messages);
+    const prompt = constructConversationPrompt(
+      userInput,
+      chatDocument.messages
+    );
 
     // Use OpenAI Chat API to generate a completion
     const openai = new OpenAI(openAiKey);
@@ -109,7 +120,7 @@ async function getAiResponse(req, res) {
     // Get the assistant's reply from the completion
     const assistantReply = completion.choices[0].message.content;
     // Remove newline characters from the assistant's reply
-   // const cleanAssistantReply = assistantReply.replace(/\n/g, ' ');
+    // const cleanAssistantReply = assistantReply.replace(/\n/g, ' ');
 
     // Save the user and assistant messages to the chat document
     chatDocument.messages.push({ role: "user", content: userInput });
@@ -121,7 +132,7 @@ async function getAiResponse(req, res) {
     // Append the user and assistant messages to the conversation history
     conversationHistory.push({ role: "user", content: userInput });
     conversationHistory.push({ role: "assistant", content: assistantReply });
- 
+
     // Send the assistant's reply and chat ID back to the client
     //res.json({ assistantReply: cleanAssistantReply, chatId: chatDocument._id });
     res.json({ assistantReply, chatId: chatDocument._id });
@@ -134,11 +145,16 @@ async function getAiResponse(req, res) {
 // Helper function to construct a conversation prompt
 function constructConversationPrompt(userInput, history) {
   // Combine user input and conversation history
-  const messages = history.map((msg) => ({ role: msg.role, content: msg.content }));
+  const messages = history.map((msg) => ({
+    role: msg.role,
+    content: msg.content,
+  }));
   messages.push({ role: "user", content: userInput });
 
   // Construct the conversation prompt
-  const prompt = messages.map((msg) => `${msg.role}: ${msg.content}`).join('\n');
+  const prompt = messages
+    .map((msg) => `${msg.role}: ${msg.content}`)
+    .join("\n");
   return prompt;
 }
 

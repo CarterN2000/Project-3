@@ -47,7 +47,7 @@ const chatMessageSchema = new Schema({
 const chatSchema = new Schema({
   user: {
     type: Schema.Types.ObjectId,
-    ref: 'User', // Reference to the User model
+    ref: 'User',
     required: true,
   },
   messages: [chatMessageSchema],
