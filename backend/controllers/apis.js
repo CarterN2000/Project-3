@@ -78,7 +78,7 @@ async function getAiResponse(req, res) {
     const userId = req.userId || "1a2b3c4d5e6f7a8b9c0d1e2f";
 
     // Get user input from the request body
-    const { content, chatId } = req.body;
+    const { role, content, chatId } = req.body;
     console.log("api controller", req.body)
 
     const userInput = content
@@ -93,7 +93,7 @@ async function getAiResponse(req, res) {
     }
 
     // Find or create a chat document for the user
-    let chatDocument = await ChatModel.findOne({ _id: chatId});
+    let chatDocument = await ChatModel.findById(chatId);
     //let chatDocument = await ChatModel.findOne({ user: userId, topic });
 
     if (!chatDocument) {
@@ -106,6 +106,7 @@ async function getAiResponse(req, res) {
       userInput,
       chatDocument.messages
     );
+    //console.log(prompt)
 
     // Use OpenAI Chat API to generate a completion
     const openai = new OpenAI(openAiKey);
