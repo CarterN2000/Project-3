@@ -78,7 +78,9 @@ async function getAiResponse(req, res) {
     const userId = req.userId || "1a2b3c4d5e6f7a8b9c0d1e2f";
 
     // Get user input from the request body
-    const { userInput } = req.body;
+    const { content } = req.body;
+
+    const userInput = content
 
     // Get user input and topic from the request body
     // const { userInput, topic } = req.body;

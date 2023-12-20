@@ -26,7 +26,7 @@ app.use(morgan("dev"));
 
 app.use("/users", usersRouter);
 app.use("/chats", chatsRouter);
-app.use("/apis", apisRouter);
+app.use("/chats/apis", apisRouter);
 
 app.get("/", (req, res) => {
   res.send("Hello");
