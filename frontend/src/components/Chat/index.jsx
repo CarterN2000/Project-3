@@ -3,11 +3,12 @@ import { createPrompt } from '../../utilities/chat-service'
 import { getChats } from '../../utilities/chat-service'
 
 
-export default function Chat({ chatContent }) {
+export default function Chat({ chatContent, chatId }) {
 
     const [prompt, setPrompt] = useState({
         role: "user",
-        content: " "
+        content: "",
+        chatId: chatId
     })
     
     
@@ -40,6 +41,7 @@ export default function Chat({ chatContent }) {
     }
 
     console.log(chatContent)
+    console.log(chatId)
 
     return (
         // below has the entire chatbox area, input field and chats

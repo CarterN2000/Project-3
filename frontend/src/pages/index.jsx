@@ -7,19 +7,23 @@ import * as chatService from '../utilities/chat-service'
 export default function Page() {
 
     const [chats, setChats] = useState([])
+    const [chatIds, setChatIds] = useState([])
     const [isLoading, setIsLoading] = useState(true)
 
     async function getChatInfo() {
         try {
             let messageArr = []
+            let chatIds = []
             const chatInfo = await chatService.getChats()
 
             if(chatInfo.length) {
                 chatInfo.forEach(function(chat) {
                     messageArr.push(chat.messages)
+                    chatIds.push(chat._id)
                 })
             }
             setChats(messageArr)
+            setChatIds(chatIds)
         }
         catch(err){
             throw new Error('failed to retrive chat logs')
@@ -41,14 +45,15 @@ export default function Page() {
     }
 
     const [selectChat, setSelectChat] = useState(null)
-    console.log(chats)
+    const [selectedChatId, setSelectedChatId] = useState(null)
+
     return (
         <section className="main-container">
             <div className="title">
                 <h2>Title and logo belong here</h2>
             </div>
-            <ChatList chats={chats} onSelectChat={index => setSelectChat(chats[index])} addNewChat={addNewChat} />
-            <Chat chatContent={selectChat} />
+            <ChatList chats={chats} onSelectChat={index => setSelectChat(chats[index])} onSelectedChatId={index => setSelectedChatId(chatIds[index])} addNewChat={addNewChat} />
+            <Chat chatContent={selectChat} chatId={selectedChatId}/>
         </section>
     )
 }
