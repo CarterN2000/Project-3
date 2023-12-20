@@ -88,3 +88,10 @@
     border: 1px solid gray;
     margin: 1rem;
 }
+
+.chats {
+    display: flex;
+    flex-direction: column;
+    text-align: flex-start;
+}
+
