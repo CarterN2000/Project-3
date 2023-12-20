@@ -1,6 +1,12 @@
+import * as chatAPI from './chat-api'
 
 
-
-export function sendPrompt(prompt) {
-    
+export async function getChats() {
+    try {
+        const chats = await chatAPI.index()
+        return chats.chatList
+    }
+    catch(err) {
+        throw new Error('No chats found!')
+    }
 }
