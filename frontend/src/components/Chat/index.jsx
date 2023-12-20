@@ -39,10 +39,8 @@ export default function Chat({ chatContent }) {
         )
     }
 
-    console.log(prompt)
-    useEffect(()=>{
-        handleSubmit()
-    }, [])
+    console.log(chatContent)
+
     return (
         // below has the entire chatbox area, input field and chats
         <section className="chatbox">
@@ -68,7 +66,7 @@ export default function Chat({ chatContent }) {
             </div>
             {/* below is where we have the input field, submit a prompt to be processed by openAI */}
             <form onSubmit={handleSubmit} className="bottom-section">
-                <input className='input-text' type="text" name="content" placeholder='Ask Me Anything :)' value={prompt.content} onChange={handleChange}  />
+                <input className='input-text' type="text" name="content" placeholder='Ask Me Anything :)' value={prompt.content} onChange={handleChange} required />
                 <input className='input-submit' type="submit" value="↑" />
             </form>
         </section>

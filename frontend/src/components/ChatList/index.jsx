@@ -6,7 +6,7 @@ export default function ChatList( {chats, onSelectChat, addNewChat}) {
         <div className="sidebar">
             <h1>All chats</h1>
             {chats.map((chat, index) => (
-                <button className='sidebar-button' key={index} onClick={() => onSelectChat(index)}>
+                <button className='sidebar-button' key={index} onClick={() => onSelectChat(index, chat._id)}>
                     Chat {index + 1}
                 </button>
             ))}

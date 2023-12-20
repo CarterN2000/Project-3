@@ -41,7 +41,7 @@ export default function Page() {
     }
 
     const [selectChat, setSelectChat] = useState(null)
-
+    console.log(chats)
     return (
         <section className="main-container">
             <div className="title">

@@ -2,7 +2,7 @@ const express = require("express");
 const OpenAI = require("openai");
 const { openAiKey } = require("../config/openKeys");
 const ChatModel = require("../models/Chat");
-
+//////////////////////
 // // Conversation history object
 // const conversationHistory = [];
 
@@ -79,6 +79,7 @@ async function getAiResponse(req, res) {
 
     // Get user input from the request body
     const { content } = req.body;
+    console.log("api controller", req.body)
 
     const userInput = content
 
