@@ -22,7 +22,6 @@ export default function Chat({ chatContent }) {
 
 
     function handleUser(chat) {
-        console.log(chat.content)
         return (
             <div className="user-message">{chat.content}</div>
         )
@@ -33,8 +32,6 @@ export default function Chat({ chatContent }) {
             <div className="assist-message"> {chat.content} </div>
         )
     }
-
-    console.log(chatContent)
 
     return (
         // below has the entire chatbox area, input field and chats
@@ -60,7 +57,7 @@ export default function Chat({ chatContent }) {
             {/* below is where we have the input field, submit a prompt to be processed by openAI */}
             <form onSubmit={handleSubmit} className="bottom-section">
                 <input className='input-text' type="text" name="userInput" placeholder='Ask Me Anything :)' value={prompt} onChange={handleChange} required />
-                <input className='input-submit' type="submit" value="↑" />
+                <input className='input-submit' type="submit" value={"\uD83E\uDC81"} />
             </form>
         </section>
     )
