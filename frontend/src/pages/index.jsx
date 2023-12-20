@@ -13,9 +13,9 @@ export default function Page() {
     ])
 
     function addNewChat() {
-        console.log('hit!')
+        
         if(chats.length < 5) {
-            setChats([...chats], {id: chats.length + 1, content: ""})
+            setChats([...chats, {id: chats.length + 1, content: ""}])
         }
         else {
             //alert user: you can only have up to 5 active chats
