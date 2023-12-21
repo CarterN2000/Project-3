@@ -26,7 +26,7 @@ export default function Page() {
             setChatIds(chatIds)
         }
         catch(err){
-            throw new Error('failed to retrive chat logs')
+            throw new Error('failed to retrieve chat logs')
         }
     }
     // console.log(isChatLoading)
@@ -54,8 +54,28 @@ export default function Page() {
             <div className="title">
                 <h2>Title and logo belong here</h2>
             </div>
-            <ChatList chats={chats} onSelectChat={index => setSelectChat(chats[index])} onSelectedChatId={index => setSelectedChatId(chatIds[index])} addNewChat={addNewChat} />
-            <Chat chatContent={selectChat} chatId={selectedChatId} />
+      
+            <ChatList
+                chats={chats}
+                onSelectChat={(index) => {
+                    const selectedChat = chats[index];
+                    const selectedChatId = chatIds[index];
+                    console.log('Selected Chat ID:', selectedChatId);
+                    setSelectedChatId((prevSelectedChatId) => {
+                        console.log('Previous Chat ID:', prevSelectedChatId);
+                        return selectedChatId;
+                    });
+                    setSelectChat(selectedChat);
+                }}
+                onSelectedChatId={(index) => {
+                    const selectedChatId = chatIds[index];
+                    console.log('Selected Chat ID (onSelectedChatId):', selectedChatId);
+                    setSelectedChatId(selectedChatId);
+                }}
+                addNewChat={addNewChat}
+                chatId={selectedChatId} 
+            />
+            <Chat chatContent={selectChat} chatId={selectedChatId}/>
         </section>
     )
 }

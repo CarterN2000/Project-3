@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { createPrompt } from "../../utilities/chat-service";
+import { createPrompt, deleteChat } from "../../utilities/chat-service";
+import { getChats } from "../../utilities/chat-service";
 
 export default function Chat({ chatContent, chatId }) {
 
@@ -59,6 +60,15 @@ export default function Chat({ chatContent, chatId }) {
   }
 
 
+async function handleDeleteChat(){
+    try{
+        const removeChat = await deleteChat(chatId)
+        console.log("here")
+    }catch(error){
+        console.log('Error from Chat Component for deleting chat:', error);
+    }
+}
+
 
   return (
     // below has the entire chatbox area, input field and chats
@@ -107,3 +117,4 @@ export default function Chat({ chatContent, chatId }) {
     </section>
   );
 }
+
