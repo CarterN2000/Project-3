@@ -9,8 +9,9 @@
 // 1- IMPORT USESTATE & SERVICE MODULE FUNCTION
 import {useState} from "react";
 import { createPrompt } from "../../utilities/chat-services"
+import { createChat } from "../../utilities/chat-services"
 
-export default function NewChatPrompt(props){
+export default function NewChat(props){
     
     // 2- DEFINE LOCAL STATES AND VARIABLES
     const [chatPrompt, setChatPrompt] = useState({

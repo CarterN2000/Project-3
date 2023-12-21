@@ -1,10 +1,14 @@
 import Chat from "../components/Chat";
 import ChatList from "../components/ChatList";
-import { useState, useEffect } from 'react'
-import './page.css'
-import * as chatService from '../utilities/chat-service'
+import { useState, useEffect } from "react";
+import "./page.css";
+import * as chatService from "../utilities/chat-service";
 
 export default function Page() {
+  const [chats, setChats] = useState([]);
+  const [chatIds, setChatIds] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
 
     const [chats, setChats] = useState([])
     const [chatIds, setChatIds] = useState([])
@@ -50,6 +54,8 @@ export default function Page() {
             console.log('maximum chats reached')
         }
     }
+//   }
+
 
     function handleChatDelete(chatId) {
         console.log('here', chatId)
@@ -58,37 +64,39 @@ export default function Page() {
         window.location.reload()
     }
 
-    const [selectChat, setSelectChat] = useState(null)
-    const [selectedChatId, setSelectedChatId] = useState(null)
 
-    return (
-        <section className="main-container">
-            <div className="title">
-                <h2>Title and logo belong here</h2>
-            </div>
-      
-            <ChatList
-                chats={chats}
-                onSelectChat={(index) => {
-                    const selectedChat = chats[index];
-                    const selectedChatId = chatIds[index];
-                    // console.log('Selected Chat ID:', selectedChatId);
-                    setSelectedChatId((prevSelectedChatId) => {
-                        // console.log('Previous Chat ID:', prevSelectedChatId);
-                        return selectedChatId;
-                    });
-                    setSelectChat(selectedChat);
-                }}
-                onSelectedChatId={(index) => {
-                    const selectedChatId = chatIds[index];
-                    // console.log('Selected Chat ID (onSelectedChatId):', selectedChatId);
-                    setSelectedChatId(selectedChatId);
-                }}
-                onDeleteChat={handleChatDelete}
-                addNewChat={addNewChat}
-                chatId={selectedChatId} 
-            />
-            <Chat chatContent={selectChat} chatId={selectedChatId}/>
-        </section>
-    )
+  const [selectChat, setSelectChat] = useState(null);
+  const [selectedChatId, setSelectedChatId] = useState(null);
+
+  return (
+    <section className="main-container">
+      {/* gradient styling */}
+      <div className="gradient-01 z-0 absolute"></div>
+      <div className="gradient-02 z-0 absolute"></div>
+      <div className="title uppercase font-bold text-2xl text-center mb-3 ">
+        <h2>NO Name AI chatbot</h2>
+      </div>
+      <ChatList
+        chats={chats}
+        onSelectChat={(index) => {
+          const selectedChat = chats[index];
+          const selectedChatId = chatIds[index];
+          console.log("Selected Chat ID:", selectedChatId);
+          setSelectedChatId((prevSelectedChatId) => {
+            console.log("Previous Chat ID:", prevSelectedChatId);
+            return selectedChatId;
+          });
+          setSelectChat(selectedChat);
+        }}
+        onSelectedChatId={(index) => {
+          const selectedChatId = chatIds[index];
+          console.log("Selected Chat ID (onSelectedChatId):", selectedChatId);
+          setSelectedChatId(selectedChatId);
+        }}
+        addNewChat={addNewChat}
+        chatId={selectedChatId}
+      />
+      <Chat chatContent={selectChat} chatId={selectedChatId} />
+    </section>
+  );
 }
