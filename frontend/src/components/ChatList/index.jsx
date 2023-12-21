@@ -41,7 +41,7 @@ export default function ChatList( {chats, onSelectChat, addNewChat, onSelectedCh
                     </button>
                 ))}
             </div>
-            <button onClick={addNewChat} className='sidebar-button text-center whitespace-nowrap'>Add New Chat</button>
+            <button onClick={addNewChat} className='sidebar-button text-center whitespace-nowrap opacity-25 hover:opacity-100'>Add New Chat</button>
         </div>
     )
 }
