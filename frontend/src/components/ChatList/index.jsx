@@ -37,7 +37,7 @@ export default function ChatList( {chats, onSelectChat, addNewChat, onSelectedCh
                 {chats.map((chat, index) => (
                     <button className='sidebar-button opacity-25 hover:opacity-75' key={index} onClick={() => runSelectors(index)}>
                         Chat {index + 1}
-                        <button onClick={handleDeleteChat}>X</button>
+                        <button onClick={handleDeleteChat}><span>X</span></button>
                     </button>
                 ))}
             </div>

@@ -53,16 +53,14 @@ export async function deleteChat(chatId) {
   }
 }
 
-export async function createChat() {
+export async function createChat(data) {
   try {
     const res = await fetch(`${config.BASE_URL}/chats`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        /* any data you want to send with the request */
-      }),
+      body: JSON.stringify(data),
     });
 
     if (res.ok) {
