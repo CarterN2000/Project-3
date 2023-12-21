@@ -29,6 +29,11 @@ export default function Chat({ chatContent, chatId }) {
     e.preventDefault();
     try {
 
+      // if(!chatId) {
+      //   console.log('click a chatbox before having a conversation')
+      //   return 
+      // }
+
       let tempPrompt = prompt
       setPrompt({ role: "user", content: "", chatId: chatId || "" });
       setPromptSent(tempPrompt.content)

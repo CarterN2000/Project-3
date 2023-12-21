@@ -8,7 +8,6 @@ export default function Page() {
 
     const [chats, setChats] = useState([])
     const [chatIds, setChatIds] = useState([])
-    const [isChatLoading, setIsChatLoading] = useState(true)
 
     async function getChatInfo() {
         try {
@@ -37,6 +36,7 @@ export default function Page() {
     
     function addNewChat() {
         if(chats.length < 5) {
+            //do this after lunch
             setChats([...chats, {id: chats.length + 1, content: ""}])
         }
         else {
@@ -45,9 +45,15 @@ export default function Page() {
         }
     }
 
+    function handleChatDelete(chatId) {
+        console.log('here', chatId)
+        const updatedChats = chatIds.filter(chat => chat !== chatId);
+        setChats(updatedChats)
+        window.location.reload()
+    }
+
     const [selectChat, setSelectChat] = useState(null)
     const [selectedChatId, setSelectedChatId] = useState(null)
-
 
     return (
         <section className="main-container">
@@ -72,6 +78,7 @@ export default function Page() {
                     // console.log('Selected Chat ID (onSelectedChatId):', selectedChatId);
                     setSelectedChatId(selectedChatId);
                 }}
+                onDeleteChat={handleChatDelete}
                 addNewChat={addNewChat}
                 chatId={selectedChatId} 
             />

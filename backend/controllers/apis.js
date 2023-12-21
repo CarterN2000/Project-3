@@ -113,7 +113,7 @@ async function getAiResponse(req, res) {
     const completion = await openai.chat.completions.create({
       model: "gpt-3.5-turbo",
       messages: [
-        { role: "system", content: "You are a helpful assistant." },
+        { role: "system", content: 'You are a friend who loves to talk about sports. You will only respond to sports related prompts and general greetings. Any other prompts will be responded with something along these lines "Although you may want to discuss other topics, I am designed to only have sports related conversations. What is your favorite sport?". You do not give gambling advice, but you may talk about trends in sports.' },
         { role: "user", content: prompt },
       ],
     });
