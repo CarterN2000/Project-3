@@ -20,15 +20,6 @@ export async function createPrompt (data){
         console.log(error)
     }
 }
-export async function createChat(data){
-    try{
-        const responseToPrompt = await chatAPI.create(data)
-        return responseToPrompt
-    }
-    catch(error){
-        console.log(error)
-    }
-}
 
 export async function deleteChat(chatId) {
     try {
@@ -45,13 +36,13 @@ export async function deleteChat(chatId) {
 }
 
 
-// export async function createChat (data){
-//     try{
-//         const responseToChat = await chatAPI.create(data)
-//         return responseToChat
-//     }
-//     catch(error){
-//         console.log(error)
-//     }
-// }
+export async function createChat (data){
+    try{
+        const responseToChat = await chatAPI.create(data)
+        return responseToChat
+    }
+    catch(error){
+        console.log(error)
+    }
+}
 
