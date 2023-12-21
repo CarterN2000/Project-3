@@ -5,7 +5,7 @@ const Chat = require ("../models/Chat")
 async function index(req, res){
     try{
         const chatList = await Chat.find()
-        console.log(chatList)
+        // console.log(chatList)
         res.status(200).json({message: "all chats retrieved", chatList})
         
     } catch (error){
@@ -28,6 +28,7 @@ async function show(req, res){
 //create a new chat
 async function create(req, res){
     try{
+        console.log('here')
         const newChat = await Chat.create(req.body)
         res.status(200).json({message: "new chat created", newChat})
     }catch(error){

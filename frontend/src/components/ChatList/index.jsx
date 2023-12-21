@@ -3,20 +3,21 @@ import { deleteChat } from "../../utilities/chat-service";
 import Chat from '../Chat'
 
 
-export default function ChatList( {chats, onSelectChat, addNewChat, onSelectedChatId, chatId}) {
-    console.log(chatId)
+export default function ChatList({ chats, onSelectChat, addNewChat, onSelectedChatId, chatId, onDeleteChat }) {
+    // console.log(chatId)
     const [chatBoxId, setChatBoxId] = useState({
         chatId: chatId || null,
-      });
-      useEffect(() => {
-        setChatBoxId((prevPrompt) => ({...chatBoxId, chatId: chatId || null}));
-      }, [chatId]);
-   
-      async function handleDeleteChat() {
+    });
+    useEffect(() => {
+        setChatBoxId((prevPrompt) => ({ ...chatBoxId, chatId: chatId || null }));
+    }, [chatId]);
+
+    async function handleDeleteChat() {
         try {
             if (chatId) {
+                onDeleteChat(chatId)
                 const deleteChatBox = await deleteChat(chatId);
-                console.log("here");
+                window.location.reload()
             } else {
                 console.log("No chatId available for deletion.");
             }
@@ -31,6 +32,7 @@ export default function ChatList( {chats, onSelectChat, addNewChat, onSelectedCh
     }
 
     return (
+
         <div className="sidebar bg-white-slate">
             <div className='flex flex-col'>
                 <h1 className='uppercase pb-5'>All chats</h1>
