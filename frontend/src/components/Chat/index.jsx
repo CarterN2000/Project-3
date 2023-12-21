@@ -3,6 +3,11 @@ import { useState, useEffect } from "react";
 import { createPrompt, deleteChat } from "../../utilities/chat-service";
 import { getChats } from "../../utilities/chat-service";
 export default function Chat({ chatContent, chatId }) {
+
+  const [chatHistory, setChatHistory] = useState([]);
+  const [isLoading, setIsLoading] = useState(false)
+  const [promptSent, setPromptSent] = useState('')
+
   const [prompt, setPrompt] = useState({
     role: "user",
     content: "",
@@ -58,7 +63,7 @@ export default function Chat({ chatContent, chatId }) {
   }
 
   // console.log(chatContent)
-  console.log(chatId);
+  // console.log(chatId);
   async function handleDeleteChat() {
     try {
       const removeChat = await deleteChat(chatId);
@@ -100,6 +105,17 @@ export default function Chat({ chatContent, chatId }) {
             </div>
           );
         })}
+
+        {chatHistory.map((chat, idx) => (
+          <div key={idx} className={chat.role === "user" ? "user-message" : "assist-message"}>
+            {chat.content}
+          </div>
+        ))}
+
+        {isLoading ? <div className="user-message">{promptSent} </div> : ''}
+        {isLoading ? <div className="loading">Awaiting Response...</div> : ''}
+
+
       </div>
       {/* below is where we have the input field, submit a prompt to be processed by openAI */}
       <form onSubmit={handleSubmit} className="bottom-section">
