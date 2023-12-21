@@ -33,23 +33,26 @@ export default function Page() {
     },[])
     
     async function addNewChat() {
-        if(chats.length < 5) {
-            
-            const newChatInfo = await chatService.createNewChat()
-            console.log(newChatInfo)
-
-
-
-
-
-            setChats([...chats, {id: chats.length + 1, content: ""}])
+      try {
+        if (chats.length < 5) {
+          const newChatInfo = await chatService.createNewChat();
+          if (newChatInfo && newChatInfo.chatId) {
+            const newChatId = newChatInfo.chatId;
+            console.log(newChatInfo);
+            setChats([...chats, { id: chats.length + 1, content: "" }]);
+          } else {
+            console.error("Invalid response from createNewChat:", newChatInfo);
+          }
+        } else {
+          // alert user: you can only have up to 5 active chats
+          console.log("maximum chats reached");
         }
-        else {
-            //alert user: you can only have up to 5 active chats
-            console.log('maximum chats reached')
-        }
+      } catch (error) {
+        console.error("Error in addNewChat:", error);
+        // Handle the error appropriately, e.g., show an error message to the user
+      }
     }
-//   }
+
 
 
     function handleChatDelete(chatId) {
@@ -60,7 +63,7 @@ export default function Page() {
     }
 
 
-  const [selectChat, setSelectChat] = useState(null);
+  const [selectChat, setSelectChat] = useState([]);
   const [selectedChatId, setSelectedChatId] = useState(null);
 
   return (

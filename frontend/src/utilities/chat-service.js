@@ -1,4 +1,6 @@
 import * as chatAPI from './chat-api'
+// import axios from 'axios'
+// import config from '../config'
 
 
 export async function getChats() {
@@ -36,13 +38,18 @@ export async function deleteChat(chatId) {
 }
 
 
-export async function createChat (data){
-    try{
-        const responseToChat = await chatAPI.create(data)
-        return responseToChat
-    }
-    catch(error){
-        console.log(error)
-    }
-}
-
+// export async function createNewChat(data) {
+//     try {
+//       const response = await axios.post(`${config.BASE_URL}/chats/apis/newChat`, data);
+  
+//       if (response.data && response.data.chatId) {
+//         return { chatId: response.data.chatId };
+        
+//       } else {
+//         throw new Error('Invalid response from createNewChat');
+//       }
+//     } catch (error) {
+//       console.error('Error in createNewChat:', error);
+//       throw new Error('Failed to create a new chat');
+//     }
+//   }

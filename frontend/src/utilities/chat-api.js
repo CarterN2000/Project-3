@@ -56,25 +56,25 @@ export async function deleteChat(chatId) {
   }
 }
 
-export async function createChat(data) {
-  try {
-    const res = await fetch(`${config.BASE_URL}/chats`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
+// export async function createChat(data) {
+//   try {
+//     const res = await fetch(`${config.BASE_URL}/chats/apis/newChat`, {
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/json',
+//       },
+//       body: JSON.stringify(data),
+//     });
 
-    if (res.ok) {
-      return res.json();
-    } else {
-      console.error("Response not okay. Status:", res.status);
-      const errorText = await res.text();
-      console.error("Error text:", errorText);
-      throw new Error("Invalid createChat request: Bad Parsing");
-    }
-  } catch (error) {
-    console.error("Error in createChat function:", error);
-  }
-}
+//     if (res.ok) {
+//       return res.json();
+//     } else {
+//       console.error('Response not okay. Status:', res.status);
+//       const errorText = await res.text();
+//       console.error('Error text:', errorText);
+//       throw new Error('Invalid createChat request: Bad Parsing');
+//     }
+//   } catch (error) {
+//     console.error('Error in createChat function:', error);
+//   }
+// }

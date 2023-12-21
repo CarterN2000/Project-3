@@ -30,6 +30,10 @@ export default function ChatList({ chats, onSelectChat, addNewChat, onSelectedCh
         onSelectChat(index)
         onSelectedChatId(index)
     }
+    const handleRefresh = () => {
+    // Reload the current page
+        window.location.reload();
+    };
 
     return (
 
@@ -43,7 +47,14 @@ export default function ChatList({ chats, onSelectChat, addNewChat, onSelectedCh
                     </button>
                 ))}
             </div>
-            <button onClick={addNewChat} className='sidebar-button text-center whitespace-nowrap opacity-25 hover:opacity-100'>Add New Chat</button>
+            <form onSubmit={handleRefresh}>
+                <button
+                    type="submit"  // Change the button type to "submit"
+                    className="sidebar-button text-center whitespace-nowrap opacity-25 hover:opacity-100"
+                >
+                Add New Chat
+                </button>
+            </form>
         </div>
     )
 }

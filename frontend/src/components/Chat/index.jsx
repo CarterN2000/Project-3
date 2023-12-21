@@ -113,7 +113,7 @@ export default function Chat({ chatContent, chatId }) {
         ))}
 
         {isLoading ? <div className="user-message">{promptSent} </div> : ''}
-        {isLoading ? <div className="loading">Awaiting Response...</div> : ''}
+        {isLoading ? <div className="loading"><img className= "-scale-50" src="./loader.gif" alt="Up Arrow" /></div> : ''}
 
 
       </div>
