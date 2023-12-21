@@ -79,9 +79,9 @@ async function getAiResponse(req, res) {
 
     // Get user input from the request body
     const { role, content, chatId } = req.body;
-    console.log("api controller", req.body)
+    console.log("api controller", req.body);
 
-    const userInput = content
+    const userInput = content;
 
     // Get user input and topic from the request body
     // const { userInput, topic } = req.body;
@@ -176,10 +176,10 @@ async function index(req, res) {
 
 async function deleteChat(req, res) {
   try {
-    const {id} = req.params;
-    console.log(id)
-    const chatId = id
-    console.log('Deleting chat with ID:', chatId);
+    const { id } = req.params;
+    console.log(id);
+    const chatId = id;
+    console.log("Deleting chat with ID:", chatId);
     const deleteAiChat = await ChatModel.findByIdAndDelete(chatId);
     console.log("chat got deleted");
   } catch (error) {
