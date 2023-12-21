@@ -9,37 +9,61 @@ export default function Page() {
   const [chatIds, setChatIds] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  async function getChatInfo() {
-    try {
-      let messageArr = [];
-      let chatIds = [];
-      const chatInfo = await chatService.getChats();
 
-      if (chatInfo.length) {
-        chatInfo.forEach(function (chat) {
-          messageArr.push(chat.messages);
-          chatIds.push(chat._id);
-        });
-      }
-      setChats(messageArr);
-      setChatIds(chatIds);
-    } catch (err) {
-      throw new Error("failed to retrieve chat logs");
+    const [chats, setChats] = useState([])
+    const [chatIds, setChatIds] = useState([])
+
+    async function getChatInfo() {
+        try {
+            let messageArr = []
+            let chatIds = []
+            const chatInfo = await chatService.getChats()
+
+            if(chatInfo.length) {
+                chatInfo.forEach(function(chat) {
+                    messageArr.push(chat.messages)
+                    chatIds.push(chat._id)
+                })
+            }
+            setChats(messageArr)
+            setChatIds(chatIds)
+        }
+        catch(err){
+            throw new Error('failed to retrieve chat logs')
+        }
     }
-  }
 
-  useEffect(() => {
-    getChatInfo();
-  }, []);
+    useEffect(() => {
+        getChatInfo()
+    },[])
+    
+    async function addNewChat() {
+        if(chats.length < 5) {
+            
+            const newChatInfo = await chatService.createNewChat()
+            console.log(newChatInfo)
 
-  function addNewChat() {
-    if (chats.length < 5) {
-      setChats([...chats, { id: chats.length + 1, content: "" }]);
-    } else {
-      //alert user: you can only have up to 5 active chats
-      console.log("maximum chats reached");
+
+
+
+
+            setChats([...chats, {id: chats.length + 1, content: ""}])
+        }
+        else {
+            //alert user: you can only have up to 5 active chats
+            console.log('maximum chats reached')
+        }
     }
-  }
+//   }
+
+
+    function handleChatDelete(chatId) {
+        console.log('here', chatId)
+        const updatedChats = chatIds.filter(chat => chat !== chatId);
+        setChats(updatedChats)
+        window.location.reload()
+    }
+
 
   const [selectChat, setSelectChat] = useState(null);
   const [selectedChatId, setSelectedChatId] = useState(null);
@@ -76,10 +100,3 @@ export default function Page() {
     </section>
   );
 }
-
-// [
-//     {id: 1, content: "The curious cat quietly observed the bustling city from a cozy windowsill."},
-//     {id: 2, content: "Amidst the ancient library's silence, a single book fell, revealing a hidden map."},
-//     {id: 3, content: "On a sunny afternoon, the old town square buzzed with artists painting vibrant landscapes."},
-
-// ]

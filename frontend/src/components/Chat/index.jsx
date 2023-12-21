@@ -20,10 +20,29 @@ export default function Chat({ chatContent, chatId }) {
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-      const newPrompt = await createPrompt(prompt);
-      console.log(
-        "handle submit is working and passing data to service module"
-      );
+
+
+      // if(!chatId) {
+      //   console.log('click a chatbox before having a conversation')
+      //   return 
+      // }
+
+      let tempPrompt = prompt
+      setPrompt({ role: "user", content: "", chatId: chatId || "" });
+      setPromptSent(tempPrompt.content)
+      setIsLoading(true)
+
+      const promptResponse = await createPrompt(tempPrompt);
+
+      setChatHistory(prevHistory => [
+        ...prevHistory,
+        { role: 'user', content: tempPrompt.content },
+        { role: 'assistant', content: promptResponse.assistantReply }
+      ]);
+
+      setIsLoading(false)
+
+
     } catch (error) {
       console.log(error);
     }

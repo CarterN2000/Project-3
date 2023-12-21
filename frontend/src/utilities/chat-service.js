@@ -45,13 +45,15 @@ export async function deleteChat(chatId) {
 }
 
 
-// export async function createChat (data){
-//     try{
-//         const responseToChat = await chatAPI.create(data)
-//         return responseToChat
-//     }
-//     catch(error){
-//         console.log(error)
-//     }
-// }
+export async function createNewChat() {
+    try {
+        const res = await chatAPI.createNewChat()
+        if (res.ok){
+            return res
+        }
+    }
+    catch(err) {
+        throw new Error('Could not create a new chat')
+    }
+}
 

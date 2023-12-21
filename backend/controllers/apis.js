@@ -79,7 +79,7 @@ async function getAiResponse(req, res) {
 
     // Get user input from the request body
     const { role, content, chatId } = req.body;
-    console.log("api controller", req.body)
+    // console.log("api controller", req.body)
 
     const userInput = content
 
@@ -113,7 +113,7 @@ async function getAiResponse(req, res) {
     const completion = await openai.chat.completions.create({
       model: "gpt-3.5-turbo",
       messages: [
-        { role: "system", content: "You are a helpful assistant." },
+        { role: "system", content: 'You are a friend who loves to talk about sports. You will only respond to sports related prompts and general greetings. Any other prompts will be responded with something along these lines "Although you may want to discuss other topics, I am designed to only have sports related conversations. What is your favorite sport?". You do not give gambling advice, but you may talk about trends in sports.' },
         { role: "user", content: prompt },
       ],
     });
@@ -177,11 +177,11 @@ async function index(req, res) {
 async function deleteChat(req, res) {
   try {
     const {id} = req.params;
-    console.log(id)
+    // console.log(id)
     const chatId = id
-    console.log('Deleting chat with ID:', chatId);
+    // console.log('Deleting chat with ID:', chatId);
     const deleteAiChat = await ChatModel.findByIdAndDelete(chatId);
-    console.log("chat got deleted");
+    // console.log("chat got deleted");
   } catch (error) {
     console.error(error);
     res.status(400).json({ error: "Internal Server Error" });

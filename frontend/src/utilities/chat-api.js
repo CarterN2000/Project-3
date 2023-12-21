@@ -1,4 +1,7 @@
-import config from "../config";
+
+import config from '../config'
+const userId = "1a2b3c4d5e6f7a8b9c0d1e2f"
+
 
 export async function index() {
   const res = await fetch(`${config.BASE_URL}/chats`, { method: "GET" });
