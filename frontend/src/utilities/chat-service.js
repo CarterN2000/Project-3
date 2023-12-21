@@ -34,3 +34,15 @@ export async function deleteChat(chatId) {
         throw error;
     }
 }
+
+export async function createNewChat() {
+    try {
+        const res = await chatAPI.createNewChat()
+        if (res.ok){
+            return res
+        }
+    }
+    catch(err) {
+        throw new Error('Could not create a new chat')
+    }
+}

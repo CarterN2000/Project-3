@@ -28,15 +28,20 @@ export default function Page() {
             throw new Error('failed to retrieve chat logs')
         }
     }
-    // console.log(isChatLoading)
-    // console.log(chatIds)
+
     useEffect(() => {
         getChatInfo()
     },[])
     
-    function addNewChat() {
+    async function addNewChat() {
         if(chats.length < 5) {
-            //do this after lunch
+            const newChatInfo = await chatService.createNewChat()
+            console.log(newChatInfo)
+
+
+
+
+
             setChats([...chats, {id: chats.length + 1, content: ""}])
         }
         else {
@@ -86,16 +91,3 @@ export default function Page() {
         </section>
     )
 }
-
-
-
-
-
-
-
-// [
-//     {id: 1, content: "The curious cat quietly observed the bustling city from a cozy windowsill."},
-//     {id: 2, content: "Amidst the ancient library's silence, a single book fell, revealing a hidden map."},
-//     {id: 3, content: "On a sunny afternoon, the old town square buzzed with artists painting vibrant landscapes."},
-
-// ]

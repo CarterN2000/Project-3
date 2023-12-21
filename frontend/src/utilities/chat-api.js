@@ -1,4 +1,5 @@
 import config from '../config'
+const userId = "1a2b3c4d5e6f7a8b9c0d1e2f"
 
 export async function index() {
     const res = await fetch(`${config.BASE_URL}/chats`, {method: 'GET'})
@@ -51,5 +52,23 @@ export async function deleteChat(chatId) {
     } catch (error) {
         console.error('Error in deleteChat function:', error);
         throw error;
+    }
+}
+
+export async function createNewChat(user, messages){
+    try {
+        const res = await fetch(`${config.BASE_URL}/chats`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+        if(res.ok) {
+            console.log(res)
+            return res.json()
+        }
+    }
+    catch(err) {
+        console.log(err)
     }
 }
