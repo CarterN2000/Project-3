@@ -22,9 +22,6 @@ export async function create(data) {
             body: clientData
         });
 
-        console.log("hit the api-module to send a new prompt to the server", data);
-        console.log(res);
-
         if (res.ok) {
             return res.json();
         } else {
