@@ -9,83 +9,28 @@ export default function Page() {
   const [chatIds, setChatIds] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
+  async function getChatInfo() {
+    try {
+      let messageArr = [];
+      let chatIds = [];
+      const chatInfo = await chatService.getChats();
 
-
-    async function getChatInfo() {
-        try {
-            let messageArr = []
-            let chatIds = []
-            const chatInfo = await chatService.getChats()
-
-            if(chatInfo.length) {
-                chatInfo.forEach(function(chat) {
-                    messageArr.push(chat.messages)
-                    chatIds.push(chat._id)
-                })
-            }
-            setChats(messageArr)
-            setChatIds(chatIds)
-        }
-        catch(err){
-            throw new Error('failed to retrieve chat logs')
-        }
-    }
-    // console.log(isChatLoading)
-    // console.log(chatIds)
-    useEffect(() => {
-        getChatInfo()
-    },[])
-    
-    function addNewChat() {
-        if(chats.length < 5) {
-            setChats([...chats, {id: chats.length + 1, content: ""}])
-        }
-        else {
-            //alert user: you can only have up to 5 active chats
-            console.log('maximum chats reached')
-        }
-
+      if (chatInfo.length) {
+        chatInfo.forEach(function (chat) {
+          messageArr.push(chat.messages);
+          chatIds.push(chat._id);
+        });
+      }
+      setChats(messageArr);
+      setChatIds(chatIds);
+    } catch (err) {
+      throw new Error("failed to retrieve chat logs");
     }
   }
 
-
-
-    const [selectChat, setSelectChat] = useState(null)
-    const [selectedChatId, setSelectedChatId] = useState(null)
-
-
-    return (
-        <section className="main-container">
-            <div className="title">
-                <h2>Title and logo belong here</h2>
-            </div>
-      
-            <ChatList
-                chats={chats}
-                onSelectChat={(index) => {
-                    const selectedChat = chats[index];
-                    const selectedChatId = chatIds[index];
-                    console.log('Selected Chat ID:', selectedChatId);
-                    setSelectedChatId((prevSelectedChatId) => {
-                        console.log('Previous Chat ID:', prevSelectedChatId);
-                        return selectedChatId;
-                    });
-                    setSelectChat(selectedChat);
-                }}
-                onSelectedChatId={(index) => {
-                    const selectedChatId = chatIds[index];
-                    console.log('Selected Chat ID (onSelectedChatId):', selectedChatId);
-                    setSelectedChatId(selectedChatId);
-                }}
-                addNewChat={addNewChat}
-                chatId={selectedChatId} 
-            />
-            <Chat chatContent={selectChat} chatId={selectedChatId}/>
-        </section>
-    )
-}
-
-
+  useEffect(() => {
+    getChatInfo();
+  }, []);
 
   function addNewChat() {
     if (chats.length < 5) {
