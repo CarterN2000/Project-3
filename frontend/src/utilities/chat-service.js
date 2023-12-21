@@ -13,10 +13,10 @@ export async function getChats() {
 
 export async function createPrompt (data){
     try{
-        const newPrompt = await chatAPI.create(data)
-        console.log("hitting service module for creating new prompt")
-        //return newPrompt
-    }catch(error){
+        const responseToPrompt = await chatAPI.create(data)
+        return responseToPrompt
+    }
+    catch(error){
         console.log(error)
     }
 }

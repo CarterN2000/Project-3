@@ -3,11 +3,17 @@ import { createPrompt, deleteChat } from "../../utilities/chat-service";
 import { getChats } from "../../utilities/chat-service";
 
 export default function Chat({ chatContent, chatId }) {
+
   const [prompt, setPrompt] = useState({
     role: "user",
     content: "",
     chatId: chatId || null,
   });
+
+  const [chatHistory, setChatHistory] = useState([]);
+  const [isLoading, setIsLoading] = useState(false)
+  const [promptSent, setPromptSent] = useState('')
+
   useEffect(() => {
     setPrompt((prevPrompt) => ({
       ...prevPrompt,
@@ -22,14 +28,27 @@ export default function Chat({ chatContent, chatId }) {
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-      const newPrompt = await createPrompt(prompt);
-      console.log(
-        "handle submit is working and passing data to service module"
-      );
+
+      let tempPrompt = prompt
+      setPrompt({ role: "user", content: "", chatId: chatId || "" });
+      setPromptSent(tempPrompt.content)
+      setIsLoading(true)
+
+      const promptResponse = await createPrompt(tempPrompt);
+      setResponse(promptResponse)
+
+      setChatHistory(prevHistory => [
+        ...prevHistory,
+        { role: 'user', content: tempPrompt.content },
+        { role: 'assistant', content: promptResponse.assistantReply }
+      ]);
+
+      setIsLoading(false)
+
     } catch (error) {
       console.log(error);
+      setPrompt({ role: "user", content: "", chatId: chatId || "" });
     }
-    setPrompt({ role: "user", content: "", chatId: chatId || "" });
   }
 
   function handleUser(chat) {
@@ -40,8 +59,7 @@ export default function Chat({ chatContent, chatId }) {
     return <div className="assist-message"> {chat.content} </div>;
   }
 
-  // console.log(chatContent)
-  console.log(chatId);
+
 async function handleDeleteChat(){
     try{
         const removeChat = await deleteChat(chatId)
@@ -50,7 +68,6 @@ async function handleDeleteChat(){
         console.log('Error from Chat Component for deleting chat:', error);
     }
 }
-
 
 
   return (
@@ -73,6 +90,16 @@ async function handleDeleteChat(){
             </div>
           );
         })}
+
+        {chatHistory.map((chat, idx) => (
+          <div key={idx} className={chat.role === "user" ? "user-message" : "assist-message"}>
+            {chat.content}
+          </div>
+        ))}
+
+        {isLoading ? <div className="user-message">{promptSent} </div> : ''}
+        {isLoading ? <div className="loading">Awaiting Response...</div> : '' }
+
       </div>
       {/* below is where we have the input field, submit a prompt to be processed by openAI */}
       <form onSubmit={handleSubmit} className="bottom-section">
@@ -91,4 +118,3 @@ async function handleDeleteChat(){
   );
 }
 
-// up arrow -> ⬆️

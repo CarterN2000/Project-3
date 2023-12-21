@@ -56,13 +56,14 @@
 .chatbox > form {
     margin-top: auto;
     height: 10%;
+    display: flex;
     align-items: center;
+    justify-content: center;
     
 }
 
 .bottom-section {
-    display: flex;
-    margin: 1rem;
+    /* margin: .5rem; */
     padding: 1%;
 }
 
@@ -119,6 +120,7 @@
 .user-message {
     margin-left: auto;
     max-width: 50%;
+    width: fit-content;
     text-align: right;
     padding-right: .5rem;
     padding-left: .5rem;
@@ -134,6 +136,7 @@
 .assist-message {
     margin-right: auto;
     max-width: 50%;
+    width: fit-content;
     text-align: left;
     padding-left: 1rem;
     margin-bottom: .5rem;
@@ -144,4 +147,19 @@
     margin-left: .5rem;
     background-color: #5a06ce;
     color: antiquewhite;
+}
+
+.loading {
+    margin-right: auto;
+    max-width: 50%;
+    text-align: left;
+    padding-left: 1rem;
+    margin-bottom: .5rem;
+    border-radius: 1.5rem;
+    padding-top: .25rem;
+    padding-bottom: .25rem;
+    padding-right: .5rem;
+    margin-left: .5rem;
+    /* background-color: #ffffff; */
+    color: rgb(0, 0, 0);
 }

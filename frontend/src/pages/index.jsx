@@ -8,7 +8,7 @@ export default function Page() {
 
     const [chats, setChats] = useState([])
     const [chatIds, setChatIds] = useState([])
-    const [isLoading, setIsLoading] = useState(true)
+    const [isChatLoading, setIsChatLoading] = useState(true)
 
     async function getChatInfo() {
         try {
@@ -29,10 +29,11 @@ export default function Page() {
             throw new Error('failed to retrieve chat logs')
         }
     }
-    
+    // console.log(isChatLoading)
+    // console.log(chatIds)
     useEffect(() => {
         getChatInfo()
-    }, [])
+    })
     
     function addNewChat() {
         if(chats.length < 5) {
@@ -47,11 +48,13 @@ export default function Page() {
     const [selectChat, setSelectChat] = useState(null)
     const [selectedChatId, setSelectedChatId] = useState(null)
 
+
     return (
         <section className="main-container">
             <div className="title">
                 <h2>Title and logo belong here</h2>
             </div>
+      
             <ChatList
                 chats={chats}
                 onSelectChat={(index) => {
