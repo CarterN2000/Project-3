@@ -5,7 +5,9 @@ const Chat = require ("../models/Chat")
 async function index(req, res){
     try{
         const chatList = await Chat.find()
+        console.log(chatList)
         res.status(200).json({message: "all chats retrieved", chatList})
+        
     } catch (error){
         console.log(error)
         res.status(400).json({message: error.message})
@@ -51,5 +53,22 @@ module.exports = {
     index, 
     show,
     create,
-    delete: destroy
+    delete: destroy,
 }
+
+
+
+
+
+// const { Configuration, OpenAIApi } = require('openai')
+// const config = new Configuration ({
+//     apiKey: openAiKey
+// })
+
+// function getResponse() {
+//     const openAi = new OpenAIApi(config)
+//     const runPrompt = async () => {
+//         const prompt = "write me a hello world function in javascript"
+
+//     }
+// }

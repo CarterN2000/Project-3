@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*{
+    margin: 0;
+    padding:0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    font-family: "Eudoxus Sans", sans-serif;
+}
+.gradient-01{
+    position:absolute;
+    width: 200px;
+    height:238px;
+    top:0;
+    background: #ca00ff;
+    filter:blur(175px);
+}
+
+.gradient-02{
+    position:absolute;
+    width: 200px;
+    height:238px;
+    top:-6rem;
+    right: 0px;
+    background: #7aebfb;
+    filter:blur(190px);
+}

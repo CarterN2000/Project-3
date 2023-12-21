@@ -2,7 +2,7 @@ require("dotenv").config();
 require("./config/db.connection");
 
 const { PORT } = process.env;
-const { Configuration, OpenAIApi } = require("openai");
+// const { Configuration, OpenAIApi } = require("openai");
 // const config = new Configuration({
 //   apiKey: "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",
 // });
@@ -15,6 +15,7 @@ const morgan = require("morgan");
 
 const usersRouter = require("./routes/users");
 const chatsRouter = require("./routes/chats");
+const apisRouter = require("./routes/apis");
 
 const app = express();
 
@@ -25,6 +26,7 @@ app.use(morgan("dev"));
 
 app.use("/users", usersRouter);
 app.use("/chats", chatsRouter);
+app.use("/chats/apis", apisRouter);
 
 app.get("/", (req, res) => {
   res.send("Hello");
