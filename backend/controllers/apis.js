@@ -174,10 +174,14 @@ async function index(req, res) {
   }
 }
 
-async function deleteAiResponse(req, res) {
+async function deleteChat(req, res) {
   try {
-    const deleteAiChat = await ChatModel.findByIdAndDelete(req.params.id);
-    console.log("ai response got deleted");
+    const {id} = req.params;
+    console.log(id)
+    const chatId = id
+    console.log('Deleting chat with ID:', chatId);
+    const deleteAiChat = await ChatModel.findByIdAndDelete(chatId);
+    console.log("chat got deleted");
   } catch (error) {
     console.error(error);
     res.status(400).json({ error: "Internal Server Error" });
@@ -187,5 +191,5 @@ async function deleteAiResponse(req, res) {
 module.exports = {
   create: getAiResponse,
   index,
-  delete: deleteAiResponse,
+  delete: deleteChat,
 };
