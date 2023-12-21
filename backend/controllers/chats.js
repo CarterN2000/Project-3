@@ -5,7 +5,7 @@ const Chat = require ("../models/Chat")
 async function index(req, res){
     try{
         const chatList = await Chat.find()
-        console.log(chatList)
+        // console.log(chatList)
         res.status(200).json({message: "all chats retrieved", chatList})
         
     } catch (error){

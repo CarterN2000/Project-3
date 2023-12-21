@@ -79,7 +79,7 @@ async function getAiResponse(req, res) {
 
     // Get user input from the request body
     const { role, content, chatId } = req.body;
-    console.log("api controller", req.body)
+    // console.log("api controller", req.body)
 
     const userInput = content
 
@@ -177,11 +177,11 @@ async function index(req, res) {
 async function deleteChat(req, res) {
   try {
     const {id} = req.params;
-    console.log(id)
+    // console.log(id)
     const chatId = id
-    console.log('Deleting chat with ID:', chatId);
+    // console.log('Deleting chat with ID:', chatId);
     const deleteAiChat = await ChatModel.findByIdAndDelete(chatId);
-    console.log("chat got deleted");
+    // console.log("chat got deleted");
   } catch (error) {
     console.error(error);
     res.status(400).json({ error: "Internal Server Error" });

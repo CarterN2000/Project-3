@@ -4,7 +4,7 @@ import Chat from '../Chat'
 
 
 export default function ChatList( {chats, onSelectChat, addNewChat, onSelectedChatId, chatId}) {
-    console.log(chatId)
+    // console.log(chatId)
     const [chatBoxId, setChatBoxId] = useState({
         chatId: chatId || null,
       });
@@ -16,7 +16,6 @@ export default function ChatList( {chats, onSelectChat, addNewChat, onSelectedCh
         try {
             if (chatId) {
                 const deleteChatBox = await deleteChat(chatId);
-                console.log("here");
             } else {
                 console.log("No chatId available for deletion.");
             }

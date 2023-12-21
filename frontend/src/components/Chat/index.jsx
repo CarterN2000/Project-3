@@ -35,7 +35,6 @@ export default function Chat({ chatContent, chatId }) {
       setIsLoading(true)
 
       const promptResponse = await createPrompt(tempPrompt);
-      setResponse(promptResponse)
 
       setChatHistory(prevHistory => [
         ...prevHistory,

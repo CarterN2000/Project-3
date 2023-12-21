@@ -33,7 +33,7 @@ export default function Page() {
     // console.log(chatIds)
     useEffect(() => {
         getChatInfo()
-    })
+    },[])
     
     function addNewChat() {
         if(chats.length < 5) {
@@ -60,16 +60,16 @@ export default function Page() {
                 onSelectChat={(index) => {
                     const selectedChat = chats[index];
                     const selectedChatId = chatIds[index];
-                    console.log('Selected Chat ID:', selectedChatId);
+                    // console.log('Selected Chat ID:', selectedChatId);
                     setSelectedChatId((prevSelectedChatId) => {
-                        console.log('Previous Chat ID:', prevSelectedChatId);
+                        // console.log('Previous Chat ID:', prevSelectedChatId);
                         return selectedChatId;
                     });
                     setSelectChat(selectedChat);
                 }}
                 onSelectedChatId={(index) => {
                     const selectedChatId = chatIds[index];
-                    console.log('Selected Chat ID (onSelectedChatId):', selectedChatId);
+                    // console.log('Selected Chat ID (onSelectedChatId):', selectedChatId);
                     setSelectedChatId(selectedChatId);
                 }}
                 addNewChat={addNewChat}
