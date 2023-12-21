@@ -7,11 +7,6 @@ import * as chatService from "../utilities/chat-service";
 export default function Page() {
   const [chats, setChats] = useState([]);
   const [chatIds, setChatIds] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-
-
-    const [chats, setChats] = useState([])
-    const [chatIds, setChatIds] = useState([])
 
     async function getChatInfo() {
         try {
@@ -93,6 +88,7 @@ export default function Page() {
           console.log("Selected Chat ID (onSelectedChatId):", selectedChatId);
           setSelectedChatId(selectedChatId);
         }}
+        handleDeleteChat={handleChatDelete}
         addNewChat={addNewChat}
         chatId={selectedChatId}
       />
