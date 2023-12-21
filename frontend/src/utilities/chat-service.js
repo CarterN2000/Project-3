@@ -20,3 +20,17 @@ export async function createPrompt (data){
         console.log(error)
     }
 }
+
+export async function deleteChat(chatId) {
+    try {
+        const response = await chatAPI.deleteChat(chatId);
+        if (!response.ok) {
+            throw new Error(`Delete request failed with status: ${response.status}`);
+        }
+        console.log('Chat deleted successfully.');
+        return response.json(); 
+    } catch (error) {
+        console.error('Error deleting chat:', error);
+        throw error;
+    }
+}

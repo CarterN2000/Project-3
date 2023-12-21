@@ -38,3 +38,21 @@ export async function create(data) {
         throw error;
     }
 }
+
+export async function deleteChat(chatId) {
+    try {
+        const response = await fetch(`${config.BASE_URL}/chats/apis/${chatId}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        if (!response.ok) {
+            throw new Error(`Delete request failed with status: ${response.status}`);
+        }
+        return response.json();
+    } catch (error) {
+        console.error('Error in deleteChat function:', error);
+        throw error;
+    }
+}
