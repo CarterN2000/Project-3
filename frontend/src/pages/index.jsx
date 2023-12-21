@@ -35,6 +35,7 @@ export default function Page() {
     
     async function addNewChat() {
         if(chats.length < 5) {
+            
             const newChatInfo = await chatService.createNewChat()
             console.log(newChatInfo)
 
