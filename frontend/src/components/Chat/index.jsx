@@ -107,7 +107,7 @@ export default function Chat({ chatContent, chatId }) {
         })}
 
         {chatHistory.map((chat, idx) => (
-          <div key={idx} className={chat.role === "user" ? "user-message" : "assist-message"}>
+          <div key={idx} className={chat.role === "user" ? "user-message" :  `assist-message assistant-chat inline-flex py-3 user-chat inline-block py-3 border-[#999999] break-words rounded-xl self-end ${assistantStyle}`}>
             {chat.content}
           </div>
         ))}

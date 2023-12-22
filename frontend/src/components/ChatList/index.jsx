@@ -12,6 +12,7 @@ export default function ChatList({ chats, onSelectChat, addNewChat, onSelectedCh
         setChatBoxId((prevPrompt) => ({ ...chatBoxId, chatId: chatId || null }));
     }, [chatId]);
 
+
     async function handleDeleteChat() {
         try {
             if (chatId) {
@@ -39,18 +40,20 @@ export default function ChatList({ chats, onSelectChat, addNewChat, onSelectedCh
 
         <div className="sidebar bg-white-slate">
             <div className='flex flex-col'>
-                <h1 className='uppercase pb-5'>All chats</h1>
+                <h1 className='uppercase pb-5 opacity-85'>All chats</h1>
                 {chats.map((chat, index) => (
-                    <button className='sidebar-button opacity-25 hover:opacity-75' key={index} onClick={() => runSelectors(index)}>
-                        Chat {index + 1}
-                        <button onClick={handleDeleteChat}><span>X</span></button>
-                    </button>
+                    <div key={index}>
+                        <button className='sidebar-button opacity-25 hover:opacity-75' onClick={() => runSelectors(index)}>
+                            Chat {index + 1}
+                        </button>
+                        <button onClick={handleDeleteChat} className='sidebar-button opacity-25 hover:opacity-75'><span>X</span></button>
+                    </div>
                 ))}
             </div>
             <form onSubmit={handleRefresh}>
                 <button
                     type="submit"  // Change the button type to "submit"
-                    className="sidebar-button text-center whitespace-nowrap opacity-25 hover:opacity-100"
+                    className="sidebar-button text-center whitespace-nowrap opacity-50 hover:opacity-100"
                 >
                 Add New Chat
                 </button>

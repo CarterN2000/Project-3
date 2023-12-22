@@ -91,7 +91,7 @@ export default function Page() {
           console.log("Selected Chat ID (onSelectedChatId):", selectedChatId);
           setSelectedChatId(selectedChatId);
         }}
-        handleDeleteChat={handleChatDelete}
+        onDeleteChat={handleChatDelete}
         addNewChat={addNewChat}
         chatId={selectedChatId}
       />
