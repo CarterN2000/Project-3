@@ -6,7 +6,7 @@ All-star AI is an AI chatbot designed specifically for sports enthusiasts. It ex
 ​
 ## Screenshots
 
-![Alt text](/readmess.png?raw=true "Optional Title")
+![Alt text](./frontend/public/readmess.png?raw=true "Optional Title")
 ​
 ### Backend Technologies
 ​
