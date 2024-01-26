@@ -28,7 +28,7 @@ All-star AI is an AI chatbot designed specifically for sports enthusiasts. It ex
 ​
 ## Deployment
 ​
-The application is deployed and can be accessed at [(https://allstarai.netlify.app/)].
+The application is deployed and can be accessed at [live site](https://allstarai.netlify.app/).
 ​
 ## GitHub Repository
 ​
