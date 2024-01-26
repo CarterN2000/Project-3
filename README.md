@@ -27,7 +27,7 @@
 ​[GitHub Link](https://github.com/CarterN2000/Project-3)
 ​
 ## Next Steps
-​- Enable users to create personalized profiles.
 - Continuously improve the visual appeal of the application.
+- Enable users to create personalized profiles.
 - Enable users to modify or remove individual chat bubble contexts.
 - Showcase a chat context on the - sidebar for each chat group.
