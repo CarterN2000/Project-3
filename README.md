@@ -20,8 +20,6 @@
 ### Third-Party APIs
 ​- [OpenAI Chat API](https://platform.openai.com/docs/api-reference/chat) - Integrated to fetch conversations with sports teams.
 ​
-## Deployment
-​The application is deployed and can be accessed at [live site](https://allstarai.netlify.app/).
 ​
 ## GitHub Repository
 ​[GitHub Link](https://github.com/CarterN2000/Project-3)
